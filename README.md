@@ -3,6 +3,8 @@ A simple Todo app built with Create React App.
 
 This project was created by using Class components.
 
+**live demo:** <a href="https://rj-todolist-app.netlify.app/">https://rj-todolist-app.netlify.app/</a>
+
 ## Features
 
 * Add a todo 
