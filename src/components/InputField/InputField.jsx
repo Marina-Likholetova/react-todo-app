@@ -18,7 +18,7 @@ export default class InputField extends React.Component {
 
     onAddTodo = () => {
         if (this.state.value.trim().length) {
-            this.props.addTodo(this.state.value);
+            this.props.addTodo({ title: this.state.value });
             this.setState({ value: "" });
         }
     };

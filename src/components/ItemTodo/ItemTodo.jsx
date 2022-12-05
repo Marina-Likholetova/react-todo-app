@@ -25,22 +25,22 @@ export default class ItemTodo extends React.Component {
                             edge="end"
                             aria-label="delete"
                             color="error"
-                            onClick={() => deleteTodo(id)}
+                            onClick={() => deleteTodo({ id })}
                         >
                             <DeleteForeverIcon />
                         </IconButton>
                     }
                     disablePadding
                 >
-                    <ListItemButton onClick={() => {}} dense>
+                    <ListItemButton onClick={() => toggleStatus({ id })} dense>
                         <ListItemIcon>
                             <Checkbox
                                 edge="start"
+                                className={`checkbox${isCompleted ? "-success" : ""}`}
                                 checked={isCompleted}
                                 tabIndex={-1}
                                 color="success"
                                 inputProps={{ "aria-labelledby": id }}
-                                onClick={() => toggleStatus(id)}
                             />
                         </ListItemIcon>
                         <ListItemText id={id} primary={title} />
