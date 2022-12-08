@@ -12,7 +12,8 @@ export const todoSlice = createSlice({
             state.value.push({
                 id: Date.now(),
                 title: action.payload.title,
-                isCompleted: false
+                isCompleted: false,
+                date: action.payload.date,
             })
         },
         deleteTodo: (state, action) => {

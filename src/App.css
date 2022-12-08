@@ -35,4 +35,24 @@
     max-width: 400px;
 }
 
+.title-secondary {
+    -webkit-font-smoothing: antialiased;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.3);
+    text-shadow: -1px -1px rgba(8, 89, 175, 0.43);
+    text-rendering: optimizeLegibility;
+    display: inline-block;
+    width: 100%;
+    font-size: 1.17em;
+    font-weight: 700;
+}
 
+.sub-title {
+    color: rgb(235 243 239 / 30%);
+    text-shadow: -1px -1px #7bb7f4;
+    padding-top: 4px;
+    padding-left: 20px;
+    font-size: 15px;
+    margin: 0;
+    width: auto;
+}
