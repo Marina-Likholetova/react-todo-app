@@ -10,7 +10,7 @@ import {
     REGISTER } from "redux-persist";
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import todoReducer from "../features/todo/todoSlice";
-
+import dateReducer from "../features/date/dateSlice";
 
 const persistConfig = {
     key: "root",
@@ -19,13 +19,14 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     todos: todoReducer,
+    date: dateReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
     reducer: persistedReducer,
-    middleware: (getDefaultMiddleware) => 
+    middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
             serializableCheck: {
                 ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
