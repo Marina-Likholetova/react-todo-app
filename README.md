@@ -7,10 +7,13 @@ This project was created by using Class components.
 
 ## Features
 
+* Calendar
 * Add a todo 
 * Mark as completed
 * Remove a todo
+* Todo persistence
 * Responsive design
+
 
 ## Project screenshot
 
@@ -19,7 +22,6 @@ This project was created by using Class components.
 ## Future features
 
 * Filter todos
-* DatePicker
 * Todo categorization
 
 ## Tech Stack
@@ -27,5 +29,8 @@ This project was created by using Class components.
 * ES6
 * React
 * MUI 
+* Redux
+* Redux Toolkit
+* Redux Persist
 
 
