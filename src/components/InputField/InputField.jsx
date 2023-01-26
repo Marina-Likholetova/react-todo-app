@@ -11,7 +11,7 @@ export default function InputField({ onSubmit }) {
         setInputValue(e.target.value);
     };
 
-    const onClick = () => {
+    const handleSubmit = () => {
         if (inputValue.trim().length) {
             onSubmit(inputValue);
             setInputValue("");
@@ -29,7 +29,7 @@ export default function InputField({ onSubmit }) {
             <Button
                 variant="contained"
                 startIcon={<AddIcon />}
-                onClick={onClick}
+                onClick={handleSubmit}
             >
                 Add
             </Button>

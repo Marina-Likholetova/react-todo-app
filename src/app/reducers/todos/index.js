@@ -1,9 +1,5 @@
 import { ADD_TODO, DELETE_TODO, TOGGLE_TODO } from "../../actions/todos";
 
-// const initialState = {
-//     value: []
-// }
-
 const initialState = [];
 
 export default function todosReducer(state = initialState, { type, payload }) {

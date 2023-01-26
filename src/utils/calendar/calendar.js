@@ -1,5 +1,6 @@
 export const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const WEEK_LENGTH = 7;
+export const initialDate = convert(Date.now());
 
 export const convertFromDate = (d) => {
     const date = new Date(d);
@@ -44,7 +45,7 @@ export const getNextWeek = (d, weekLength = WEEK_LENGTH) => {
     return getWeek(d + timeWeek);
 }
 
-export const convert = (d) => {
+function convert (d) {
     const date = new Date(d);
     return new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime()
 }

@@ -1,7 +1,7 @@
 import { SET_DATE } from "../../actions/date"; 
-import { convert } from "../../../utils/calendar/calendar";
+import { initialDate } from "../../../utils/calendar/calendar";
 
-const initialState = convert(Date.now());
+const initialState = initialDate;
 
 export default function dateReducer(state = initialState, {type, payload}) {
     switch (type) {

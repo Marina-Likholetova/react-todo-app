@@ -4,31 +4,24 @@ import InputField from "./components/InputField/InputField";
 import ListTodos from "./components/ListTodos/ListTodos";
 import TodoInfo from "./components/TodoInfo/TodoInfo";
 import Calendar from "./components/Calendar/Calendar";
-import DateContainer from "./components/ContainerDate/ContainerDate";
-import TodoContainer from "./components/ContainerTodo/ContainerTodo";
+import ContainerTodo from "./components/ContainerTodo/ContainerTodo";
+
 
 export default function App() {
     return (
         <div className="container">
             <div className="section-todos">
                 <h1>todos</h1>
-                <DateContainer>
-                    {(date) => (
+                <Calendar />
+                <ContainerTodo>
+                    {(todos, date, onSubmit) => (
                         <>
-                            <Calendar date={date} />
-                            <TodoContainer
-                                date={date}
-                                children={(todos, addTodo) => (
-                                    <>
-                                        <ListTodos todoList={todos} date={date} />
-                                        <InputField onSubmit={addTodo} />
-                                        <TodoInfo todos={todos} date={date} />
-                                    </>
-                                )}
-                            />
+                            <ListTodos todos={todos} date={date} />
+                            <InputField onSubmit={onSubmit}/>
+                            <TodoInfo todos={todos} date={date} />
                         </>
                     )}
-                </DateContainer>
+                </ContainerTodo>
             </div>
         </div>
     );

@@ -1,19 +1,28 @@
 import React, {useEffect, useState} from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Button, IconButton } from "@mui/material";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import { getWeek, getPrevWeek, getNextWeek, convertIntoString, DAYS, convert } from "../../utils/calendar/calendar.js";
+import {
+    getWeek,
+    getPrevWeek,
+    getNextWeek,
+    convertIntoString,
+    DAYS,
+    initialDate,
+} from "../../utils/calendar/calendar.js";
 import generateRandomNumber from "../../utils/helpers/generateRandomNumber";
 import { setDate } from "../../app/actions/date";
 import "./Calendar.css";
 
 
 
-export default function Calendar({date}) {
-    const [week, setWeek] = useState(getWeek(date));
-    const dispatch = useDispatch();
 
+export default function Calendar() {
+    const date = useSelector(state => state.date);
+    const [week, setWeek] = useState(() => getWeek(initialDate));
+    const dispatch = useDispatch();
+    
 
     const onMoveLeft = () => {
         setWeek(getPrevWeek(week[0].time));
@@ -23,17 +32,20 @@ export default function Calendar({date}) {
         setWeek(getNextWeek(week[0].time));
     };
 
-    const onPickDate = (date) => {
-        dispatch(setDate({ date }));
+    const onPickDate = (newDate) => {
+        if (newDate !== date) {
+            dispatch(setDate({ date: newDate }));
+        }  
     };
 
     useEffect(() => {
-        const currentDate = convert(Date.now());
-        onPickDate(currentDate);
-        return () => {
-            setWeek(getWeek(currentDate));
-        }
+        onPickDate(initialDate);
     }, []);
+
+    useEffect(() => {
+        setWeek((prevWeek) => (!prevWeek.find((day) => day.time === date) ? getWeek(date) : prevWeek));
+    }, [date])
+
 
 
     return (
