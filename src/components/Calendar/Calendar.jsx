@@ -12,7 +12,7 @@ import {
     initialDate,
 } from "../../utils/calendar/calendar.js";
 import generateRandomNumber from "../../utils/helpers/generateRandomNumber";
-import { setDate } from "../../app/actions/date";
+import { setDate } from "../../store/actions/date";
 import "./Calendar.css";
 
 
@@ -37,6 +37,7 @@ export default function Calendar() {
             dispatch(setDate({ date: newDate }));
         }  
     };
+    
 
     useEffect(() => {
         onPickDate(initialDate);

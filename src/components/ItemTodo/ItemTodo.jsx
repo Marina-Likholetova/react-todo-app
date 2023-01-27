@@ -8,7 +8,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import "./ItemTodo.css";
-import { deleteTodo, toggleStatus } from "../../app/actions/todos";
+import { deleteTodo, toggleStatus } from "../../store/actions/todos";
 
 
 

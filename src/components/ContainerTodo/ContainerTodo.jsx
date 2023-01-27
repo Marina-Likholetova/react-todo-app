@@ -1,8 +1,12 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addTodo } from "../../app/actions/todos";
+import { addTodo } from "../../store/actions/todos";
+import ListTodos from "../ListTodos/ListTodos";
+import InputField from "../InputField/InputField"
+import TodoInfo from "../TodoInfo/TodoInfo";
 
-export default function ContainerTodo({ children }) {
+
+export default function ContainerTodo() {
     const [todoList, date] = useSelector((state) => [
         state.todos.filter((todo) => todo.date === state.date),
         state.date,
@@ -13,5 +17,11 @@ export default function ContainerTodo({ children }) {
         dispatch(addTodo({ title, date }));
     };
 
-    return <>{children(todoList, date, onAddTodo)}</>;
+    return (
+        <>
+            <ListTodos todos={todoList} date={date} />
+            <InputField onSubmit={onAddTodo} />
+            <TodoInfo todos={todoList} date={date} />
+        </>
+    );
 }

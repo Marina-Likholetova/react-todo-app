@@ -1,9 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Button } from "@mui/material";
-import { setDate } from "../../app/actions/date";
+import { setDate } from "../../store/actions/date";
 import { initialDate } from "../../utils/calendar/calendar";
-
 import "./TodoInfo.css";
 
 
