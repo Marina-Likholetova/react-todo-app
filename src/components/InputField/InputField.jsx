@@ -1,45 +1,46 @@
-import React from "react";
+import React, { useState, useEffect} from "react";
 import { Button, Stack, TextField } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import useScrollIntoView from "../../hooks/useScrollIntoView";
 
 
 
-export default class InputField extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            value: "",
-        };
-    }
+export default function InputField({ onSubmit }) {
+    const [inputValue, setInputValue] = useState("");
+    const [inputRef, scrollIntoView] = useScrollIntoView();
+  
 
-    onInputChange = (e) => {
-        this.setState({ value: e.target.value });
+    const onInputChange = (e) => {
+        setInputValue(e.target.value);
     };
 
-    onAddTodo = () => {
-        if (this.state.value.trim().length) {
-            this.props.addTodo({ title: this.state.value, date: this.props.date });
-            this.setState({ value: "" });
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (inputValue.trim().length) {
+            onSubmit(inputValue);
+            setInputValue("");
         }
     };
 
-    render() {
-        return (
+    useEffect(() => {
+        !inputValue && scrollIntoView();
+    }, [inputValue]);
+
+
+    return (
+        <form onSubmit={handleSubmit}>
             <Stack direction="row" spacing={2}>
                 <TextField
                     fullWidth
                     label="What needs to be done?"
-                    value={this.state.value}
-                    onChange={this.onInputChange}
+                    value={inputValue}
+                    onChange={onInputChange}
+                    inputRef={inputRef}
                 />
-                <Button
-                    variant="contained"
-                    startIcon={<AddIcon />}
-                    onClick={this.onAddTodo}
-                >
+                <Button variant="contained" type="submit" startIcon={<AddIcon />}>
                     Add
                 </Button>
             </Stack>
-        );
-    }
+        </form>
+    );
 }
