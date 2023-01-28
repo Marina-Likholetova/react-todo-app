@@ -1,14 +1,14 @@
-import React, { useState, useRef, useEffect} from "react";
+import React, { useState, useEffect} from "react";
 import { Button, Stack, TextField } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-
+import useScrollIntoView from "../../hooks/useScrollIntoView";
 
 
 
 export default function InputField({ onSubmit }) {
-    const [inputValue, setInputValue] = useState(" ");
-    const inputRef = useRef(null);
-    
+    const [inputValue, setInputValue] = useState("");
+    const [inputRef, scrollIntoView] = useScrollIntoView();
+  
 
     const onInputChange = (e) => {
         setInputValue(e.target.value);
@@ -22,11 +22,8 @@ export default function InputField({ onSubmit }) {
         }
     };
 
-
     useEffect(() => {
-        if (!inputValue) {
-            inputRef?.current.scrollIntoView();
-        }
+        !inputValue && scrollIntoView();
     }, [inputValue]);
 
 

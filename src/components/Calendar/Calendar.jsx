@@ -22,7 +22,6 @@ export default function Calendar() {
     const date = useSelector(state => state.date);
     const [week, setWeek] = useState(() => getWeek(initialDate));
     const dispatch = useDispatch();
-    
 
     const onMoveLeft = () => {
         setWeek(getPrevWeek(week[0].time));

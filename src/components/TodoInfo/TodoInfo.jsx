@@ -17,18 +17,21 @@ export default function TodoInfo({ todos, date }) {
 
   
     return (
-        <div className="todo-info">
-            <p>{restTodos} item left</p>
-            <p>{new Date(date).toLocaleDateString()}</p>
-            <Button
-                size="small"
-                variant="contained"
-                disabled={date === initialDate}
-                onClick={onBackToToday}
-                sx={{fontSize: "10px" }}
-            >
-                Back to today
-            </Button>
-        </div>
+        <>
+            <div className="todo-info">
+                <p>{restTodos} item left</p>
+                <p>{new Date(date).toLocaleDateString()}</p>
+                <Button
+                    size="small"
+                    variant="contained"
+                    disabled={date === initialDate}
+                    onClick={onBackToToday}
+                    sx={{ fontSize: "10px" }}
+                >
+                    Back to today
+                </Button>
+            </div>
+            
+        </>
     );
 }
