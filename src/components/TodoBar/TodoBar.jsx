@@ -1,23 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import { useDispatch} from "react-redux";
 import { Button, Stack } from "@mui/material";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
-import { deleteTodo } from "../../store/actions/todos";
+import { setTodoFilter } from "../../store/actions/filter";
 
+
+// const radioButtons = [
+//     { label: "All", value: "all" },
+//     { label: "Only done", value: "0" },
+//     { label: "Only undone", value: "1"},
+// ];
 
 const radioButtons = [
     { label: "All", value: "all" },
-    { label: "Only done", value: "0" },
-    { label: "Only undone", value: "1"},
+    { label: "Only done", value: "done" },
+    { label: "Only undone", value: "undone" },
 ];
 
 const defaultValue = "all";
 
 
-export default function TodoBar({todos}) {
+export default function TodoBar({ onCleanUpTodos }) {
     const [radioValue, setRadioValue] = useState(defaultValue);
     const dispatch = useDispatch();
 
@@ -25,14 +31,28 @@ export default function TodoBar({todos}) {
         setRadioValue(e.target.value);
     };
 
-    const onCleanUpTodos = () => {
-        const deletedTodos =
-            radioValue === "all"
-                ? todos.map((todo) => todo.id)
-                : todos.filter((todo) => todo.isCompleted === !Number(radioValue)).map((todo) => todo.id);
-        
-        dispatch(deleteTodo(deletedTodos));
+    const onShowTodos = () => {
+        dispatch(setTodoFilter(radioValue));
     };
+
+    const onCleanTodos = () => {
+        onCleanUpTodos(radioValue);
+    }
+
+    useEffect(() => {
+        return () => {
+            dispatch(setTodoFilter(defaultValue));
+        };
+    }, []);
+
+    // const onCleanUpTodos = () => {
+    //     const deletedTodos =
+    //         radioValue === "all"
+    //             ? todos.map((todo) => todo.id)
+    //             : todos.filter((todo) => todo.isCompleted === !Number(radioValue)).map((todo) => todo.id);
+
+    //     dispatch(deleteTodo(deletedTodos));
+    // };
 
     return (
         <Stack direction="row" sx={{ justifyContent: "space-between" }}>
@@ -54,10 +74,10 @@ export default function TodoBar({todos}) {
                 </RadioGroup>
             </FormControl>
             <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-                <Button size="small" variant="contained" sx={{ fontSize: "10px" }} onClick={() => {}}>
+                <Button size="small" variant="contained" sx={{ fontSize: "10px" }} onClick={onShowTodos}>
                     Show
                 </Button>
-                <Button size="small" variant="contained" sx={{ fontSize: "10px" }} onClick={onCleanUpTodos}>
+                <Button size="small" variant="contained" sx={{ fontSize: "10px" }} onClick={onCleanTodos}>
                     Clean
                 </Button>
             </Stack>

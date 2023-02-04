@@ -12,7 +12,7 @@ import { deleteTodo, toggleStatus } from "../../store/actions/todos";
 
 
 
-export default function ItemTodo({ title, id, isCompleted }) {
+export default function ItemTodo({ title, id, completed }) {
     const dispatch = useDispatch();
 
     const onToggleStatus = () => {
@@ -27,7 +27,7 @@ export default function ItemTodo({ title, id, isCompleted }) {
     return (
         <>
             <ListItem
-                className={`item-todo ${isCompleted ? "item-todo-success" : ""}`}
+                className={`item-todo ${completed ? "item-todo-success" : ""}`}
                 secondaryAction={
                     <IconButton
                         className="delete-btn"
@@ -45,8 +45,8 @@ export default function ItemTodo({ title, id, isCompleted }) {
                     <ListItemIcon>
                         <Checkbox
                             edge="start"
-                            className={`checkbox${isCompleted ? "-success" : ""}`}
-                            checked={isCompleted}
+                            className={`checkbox${completed ? "-success" : ""}`}
+                            checked={completed}
                             tabIndex={-1}
                             color="success"
                             inputProps={{ "aria-labelledby": id }}

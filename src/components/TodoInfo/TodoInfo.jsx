@@ -8,7 +8,7 @@ import "./TodoInfo.css";
 
 
 export default function TodoInfo({ todos, date }) {
-    const restTodos = todos.filter(todo => !todo.isCompleted).length;
+    const restTodos = todos.filter(todo => !todo.completed).length;
     const dispatch = useDispatch();
 
     const onBackToToday = () => {

@@ -2,14 +2,14 @@ import React from "react";
 import { List } from "@mui/material";
 import ItemTodo from "../ItemTodo/ItemTodo";
 
-export default function ListTodos({ todos, date }) {
+export default function ListTodos({ todos, date, filter }) {
     return (
         <>
             <div className="todo-list">
                 {todos.length ? (
                     <>
                         <p className="title-secondary sub-title">
-                            Your list for {new Date(date).toDateString()}
+                            Your list for {new Date(date).toDateString()}, ({filter})
                         </p>
                         <List>
                             {todos?.map((todo) => (

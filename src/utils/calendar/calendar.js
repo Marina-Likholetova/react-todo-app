@@ -45,7 +45,7 @@ export const getNextWeek = (d, weekLength = WEEK_LENGTH) => {
     return getWeek(d + timeWeek);
 }
 
-function convert (d) {
+export function convert (d) {
     const date = new Date(d);
     return new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime()
 }
