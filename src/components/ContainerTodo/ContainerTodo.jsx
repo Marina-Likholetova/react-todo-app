@@ -11,20 +11,6 @@ import { convert } from "../../utils/calendar/calendar";
 
 
 export default function ContainerTodo() {
-    // const [todoList, date] = useSelector((state) => [
-    //     state.todos.filter((todo) => {
-    //         if (state.filter !== "all") {
-    //             return (
-    //                 (state.filter === "done" && todo.date === state.date && todo.isCompleted) ||
-    //                 (state.filter === "undone" && todo.date === state.date && !todo.isCompleted)
-    //             );
-    //         } else {
-    //             return todo.date === state.date;
-    //         }
-    //     }),
-    //     state.date,
-    // ]);
-
     const [todos, date, filter, isLoading] = useSelector((state) => [
         state.todos.value.filter(todo => convert(todo.date) === state.date),
         state.date,

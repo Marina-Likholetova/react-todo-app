@@ -7,13 +7,6 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import { setTodoFilter } from "../../store/actions/filter";
 
-
-// const radioButtons = [
-//     { label: "All", value: "all" },
-//     { label: "Only done", value: "0" },
-//     { label: "Only undone", value: "1"},
-// ];
-
 const radioButtons = [
     { label: "All", value: "all" },
     { label: "Only done", value: "done" },
@@ -21,6 +14,7 @@ const radioButtons = [
 ];
 
 const defaultValue = "all";
+
 
 
 export default function TodoBar({ onCleanUpTodos }) {
@@ -45,15 +39,7 @@ export default function TodoBar({ onCleanUpTodos }) {
         };
     }, []);
 
-    // const onCleanUpTodos = () => {
-    //     const deletedTodos =
-    //         radioValue === "all"
-    //             ? todos.map((todo) => todo.id)
-    //             : todos.filter((todo) => todo.isCompleted === !Number(radioValue)).map((todo) => todo.id);
-
-    //     dispatch(deleteTodo(deletedTodos));
-    // };
-
+    
     return (
         <Stack direction="row" sx={{ justifyContent: "space-between" }}>
             <FormControl>
