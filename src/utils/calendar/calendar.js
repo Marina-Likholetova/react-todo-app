@@ -1,5 +1,6 @@
 export const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const WEEK_LENGTH = 7;
+export const initialDate = convert(Date.now());
 
 export const convertFromDate = (d) => {
     const date = new Date(d);
@@ -17,6 +18,7 @@ export const convertIntoString = (year, month) => {
         .toDateString()
         .replace(/(^[a-zA-Z]{3}\s)|([0-9]{2}\s)/g, "")
 }
+
 
 export const getWeek = (d, weekLength = WEEK_LENGTH) => {
     const date = convertFromDate(d);
@@ -41,4 +43,9 @@ export const getPrevWeek = (d, weekLength = WEEK_LENGTH) => {
 export const getNextWeek = (d, weekLength = WEEK_LENGTH) => {
     const timeWeek = (24 * 3600 * 1000) * weekLength;
     return getWeek(d + timeWeek);
+}
+
+export function convert (d) {
+    const date = new Date(d);
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime()
 }
